@@ -32,10 +32,32 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  var result = 0;
+
+  for (var i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      result += arraySum(array[i]);
+    } else {
+      result += array[i];
+    }
+  }
+
+  return result
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  function subtractByTwo(num) {
+    return Math.abs(num) - 2;
+  }
+
+  if (subtractByTwo(n) === 0) {
+    return true
+  } else if (subtractByTwo(n) === -1) {
+    return false
+  } else {
+    return isEven(subtractByTwo(n))
+  }
 };
 
 // 5. Sum all integers below a given integer.
